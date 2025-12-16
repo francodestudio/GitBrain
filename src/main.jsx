@@ -8,32 +8,63 @@ const renderer = new THREE.WebGLRenderer({alpha:true});
 const loader = new GLTFLoader();
 const dirLight = new THREE.DirectionalLight(0xffffff, 1);
 
-renderer.setClearColor(0x000000, 0);
+//renderer.setClearColor(0x000000, 0);
 renderer.setSize( window.innerWidth, window.innerHeight );
 
 document.body.appendChild( renderer.domElement );
-camera.position.z = 5;
 
+camera.position.set(0, 0, 0);
 
-scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+scene.add(new THREE.AmbientLight(0xffffff, 0.6));
 dirLight.position.set(5, 5, 5);
 scene.add(dirLight);
 
-loader.load ("/brain.glb", function(glft){
-  const model = glft.scene
+loader.load("/brain.glb", function (gltf) {
+  const model = gltf.scene;
+
   model.scale.set(0.008, 0.008, 0.008);
+
+  const box = new THREE.Box3().setFromObject(model);
+  const center = box.getCenter(new THREE.Vector3());
+  model.position.sub(center);
+
+  let brainMesh;
+
+  model.traverse((child) => {
+    if (child.isMesh) {
+      brainMesh = child;
+      child.material = new THREE.MeshStandardMaterial({
+        color: 0xC8BBC9,
+        wireframe: true
+      });
+    }
+  });
+
+  const positions = brainMesh.geometry.attributes.position;
+    const nodeGeometry = new THREE.SphereGeometry(10, 10, 10);
+    const nodeMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+
+  for (let i = 0; i < 50; i++) {
+
+    const index = Math.floor(Math.random() * positions.count);
+
+    const x = positions.getX(index);
+    const y = positions.getY(index);
+    const z = positions.getZ(index);
+    console.log(index);
+
+    const nodeMesh = new THREE.Mesh(nodeGeometry, nodeMaterial);
+    nodeMesh.position.set(x, y, z);
+
+    model.add(nodeMesh); // nodes rotate with brain
+  }
 
   scene.add(model);
 
   function motion() {
-  model.rotation.y += 0.01;
-  renderer.render( scene, camera );
+    model.rotation.y += 0.01;
+    renderer.render(scene, camera);
+  }
 
-}
-renderer.setAnimationLoop( motion);
-
-},undefined, function (error){
-  console.error(error);
+  renderer.setAnimationLoop(motion);
 });
-
-
