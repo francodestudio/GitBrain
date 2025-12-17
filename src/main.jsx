@@ -13,7 +13,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 
 document.body.appendChild( renderer.domElement );
 
-camera.position.set(0, 0, 0);
+camera.position.set(0, 0, 5);
 
 scene.add(new THREE.AmbientLight(0xffffff, 0.6));
 dirLight.position.set(5, 5, 5);
@@ -41,6 +41,7 @@ loader.load("/brain.glb", function (gltf) {
   });
 
   const positions = brainMesh.geometry.attributes.position;
+  console.log(positions)
     const nodeGeometry = new THREE.SphereGeometry(10, 10, 10);
     const nodeMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
 
@@ -51,7 +52,7 @@ loader.load("/brain.glb", function (gltf) {
     const x = positions.getX(index);
     const y = positions.getY(index);
     const z = positions.getZ(index);
-    console.log(index);
+   
 
     const nodeMesh = new THREE.Mesh(nodeGeometry, nodeMaterial);
     nodeMesh.position.set(x, y, z);
