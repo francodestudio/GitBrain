@@ -13,7 +13,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 
 document.body.appendChild( renderer.domElement );
 
-camera.position.set(0, 0, 5);
+camera.position.set(0.5, 0, 0);
 
 scene.add(new THREE.AmbientLight(0xffffff, 0.6));
 dirLight.position.set(5, 5, 5);
@@ -41,24 +41,41 @@ loader.load("/brain.glb", function (gltf) {
   });
 
   const positions = brainMesh.geometry.attributes.position;
-  console.log(positions)
-    const nodeGeometry = new THREE.SphereGeometry(10, 10, 10);
-    const nodeMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+  const nodeGeometry = new THREE.SphereGeometry(10, 10, 10);
+  const nodeMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+  const nodeMesh = new THREE.Mesh(nodeGeometry, nodeMaterial);
+  nodeMesh.position.set(-50, 150, 250);
+  model.add(nodeMesh);
 
-  for (let i = 0; i < 50; i++) {
+  const nodeMesh2 = new THREE.Mesh(nodeGeometry, nodeMaterial);
+  nodeMesh2.position.set(0.05, 100, 0.04);
+  model.add(nodeMesh2);
 
-    const index = Math.floor(Math.random() * positions.count);
+  const nodeMesh3 = new THREE.Mesh(nodeGeometry, nodeMaterial);
+  nodeMesh3.position.set(-20, 200, 20);
+  model.add(nodeMesh3);
 
-    const x = positions.getX(index);
-    const y = positions.getY(index);
-    const z = positions.getZ(index);
-   
+  const nodeMesh4 = new THREE.Mesh(nodeGeometry, nodeMaterial);
+  nodeMesh4.position.set(-100, 300, 100);
+  model.add(nodeMesh4);
+  
+  const nodeMesh5 = new THREE.Mesh(nodeGeometry, nodeMaterial);
+  nodeMesh5.position.set(-150, 200, 200);
+  model.add(nodeMesh5);
 
-    const nodeMesh = new THREE.Mesh(nodeGeometry, nodeMaterial);
-    nodeMesh.position.set(x, y, z);
+  const nodeMesh6 = new THREE.Mesh(nodeGeometry, nodeMaterial);
+  nodeMesh6.position.set(-150, 200, 50);
+  model.add(nodeMesh6);
 
-    model.add(nodeMesh); // nodes rotate with brain
-  }
+  const nodeMesh7 = new THREE.Mesh(nodeGeometry, nodeMaterial);
+  nodeMesh7.position.set(-150, 200, -100);
+  model.add(nodeMesh7);
+
+  const nodeMesh8 = new THREE.Mesh(nodeGeometry, nodeMaterial);
+  nodeMesh8.position.set(80, 230, 100);
+  model.add(nodeMesh8);
+  
+
 
   scene.add(model);
 
