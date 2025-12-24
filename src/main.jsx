@@ -42,7 +42,7 @@ loader.load("/brain.glb", function (gltf) {
 
   const positions = brainMesh.geometry.attributes.position;
   const nodeGeometry = new THREE.SphereGeometry(10, 10, 10);
-  const nodeMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
+  const nodeMaterial = new THREE.MeshStandardMaterial({ color: 0xff69b4});
   const nodeMesh = new THREE.Mesh(nodeGeometry, nodeMaterial);
   nodeMesh.position.set(-50, 150, 250);
   model.add(nodeMesh);
@@ -72,8 +72,12 @@ loader.load("/brain.glb", function (gltf) {
   model.add(nodeMesh7);
 
   const nodeMesh8 = new THREE.Mesh(nodeGeometry, nodeMaterial);
-  nodeMesh8.position.set(80, 230, 100);
+  nodeMesh8.position.set(60, 230, -50);
   model.add(nodeMesh8);
+  
+   const nodeMesh9 = new THREE.Mesh(nodeGeometry, nodeMaterial);
+  nodeMesh9.position.set(60, 200, 150);
+  model.add(nodeMesh9);
   
 
 
