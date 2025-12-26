@@ -1,5 +1,5 @@
 {
-  "homepage":"https://francodestudio.github.io/GitBrain/",
+  "homepage":"https://francodestudio.github.io/GitBrain.git",
   "type": "module",
 
   "dependencies": {
@@ -9,15 +9,14 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.2",
-    "gh-pages": "^6.3.0",
+ 
     "vite": "^7.2.6"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "predeploy": "pnpm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
+  
 }
 
   }
