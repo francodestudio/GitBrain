@@ -19,7 +19,7 @@ scene.add(new THREE.AmbientLight(0xffffff, 0.6));
 dirLight.position.set(5, 5, 5);
 scene.add(dirLight);
 
-loader.load("/brain.glb", function (gltf) {
+loader.load("/GitBrain/brain.glb", function (gltf) {
   const model = gltf.scene;
 
   model.scale.set(0.008, 0.008, 0.008);
