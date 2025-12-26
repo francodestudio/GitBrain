@@ -1,23 +1,21 @@
 {
-  "homepage":"https://francodestudio.github.io/GitBrain.git",
+  "homepage": "https://francodestudio.github.io/GitBrain.git",
   "type": "module",
-
   "dependencies": {
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
+    "gh-pages": "^6.3.0",
     "three": "^0.181.2"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.2",
- 
     "vite": "^7.2.6"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
-  
-}
-
+    "preview": "vite preview",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist"
   }
-
+}
